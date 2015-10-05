@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.*;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -23,13 +24,16 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     /* URL saved to be loaded after fb login */
-    private static final String target_url        = "https://lynk-test.herokuapp.com/";
-    private static final String target_url_prefix = "lynk-test.herokuapp.com/";
+    private static final String target_url        = "https://www.gling.be/";
+    private static final String target_url_prefix = "gling.be";
     private Context     mContext;
+    private ImageView   loadingImage;
     private WebView     mWebview;
     private FrameLayout mContainer;
     private long mLastBackPressTime = 0;
     private Toast mToast;
+    private boolean onLoadingMode = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class MainActivity extends Activity {
         mWebview = (WebView) findViewById(R.id.webview);
         //mWebviewPop = (WebView) findViewById(R.id.webviewPop);
         mContainer = (FrameLayout) findViewById(R.id.webview_frame);
+        loadingImage = (ImageView) findViewById(R.id.loading_image);
         WebSettings webSettings = mWebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(false);
@@ -82,11 +87,7 @@ public class MainActivity extends Activity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-            String host = Uri.parse(url).getHost();
-
-            if (host.equals(target_url_prefix)) {
-                view.loadUrl(url);
-            } else if (url.startsWith("mailto:")) {
+            if (url.startsWith("mailto:")) {
                 Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
                 startActivity(i);
             } else if (url.startsWith("tel:")) {
@@ -97,13 +98,90 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(Intent.CATEGORY_APP_MAPS,
                         Uri.parse(url));
                 startActivity(intent);
+            } else if (url.contains(target_url_prefix)
+                    || url.contains("/dialog/oauth")
+                    || url.contains("m.facebook.com/login")) {
+                view.loadUrl(url);
+                return false;
             } else {
                 view.getContext().startActivity(
                         new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             }
             return true;
         }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler,
+                                       SslError error) {
+            Log.d("tttt", "onReceivedSslError");
+            //super.onReceivedSslError(view, handler, error);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+
+            if (onLoadingMode) {
+                mWebview.setVisibility(View.VISIBLE);
+                loadingImage.setVisibility(View.GONE);
+            }
+
+
+            super.onPageFinished(view, url);
+        }
     }
 
+//    class UriChromeClient extends WebChromeClient {
+//
+//        @Override
+//        public boolean onCreateWindow(WebView view, boolean isDialog,
+//                                      boolean isUserGesture, Message resultMsg) {
+////            mWebviewPop = new WebView(mContext);
+////            mWebviewPop.setVerticalScrollBarEnabled(false);
+////            mWebviewPop.setHorizontalScrollBarEnabled(false);
+////            mWebviewPop.setWebViewClient(new UriWebViewClient());
+////            mWebviewPop.getSettings().setJavaScriptEnabled(true);
+////            mWebviewPop.getSettings().setSavePassword(false);
+//
+////            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+////                    ViewGroup.LayoutParams.MATCH_PARENT);
+////            layoutParams.setMargins(20, 100, 20, 100);
+//
+////            mWebviewPop.setLayoutParams(layoutParams);
+////            mContainer.addView(mWebviewPop);
+////            WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+////            transport.setWebView(mWebviewPop);
+//            resultMsg.sendToTarget();
+//
+//            return true;
+//        }
+//
+//    }
+
+//    class UriChromeClient extends WebChromeClient {
+//
+//        @Override
+//        public boolean onCreateWindow(WebView view, boolean isDialog,
+//                                      boolean isUserGesture, Message resultMsg) {
+////            mWebviewPop = new WebView(mContext);
+////            mWebviewPop.setVerticalScrollBarEnabled(false);
+////            mWebviewPop.setHorizontalScrollBarEnabled(false);
+////            mWebviewPop.setWebViewClient(new UriWebViewClient());
+////            mWebviewPop.getSettings().setJavaScriptEnabled(true);
+////            mWebviewPop.getSettings().setSavePassword(false);
+//
+////            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+////                    ViewGroup.LayoutParams.MATCH_PARENT);
+////            layoutParams.setMargins(20, 100, 20, 100);
+//
+////            mWebviewPop.setLayoutParams(layoutParams);
+////            mContainer.addView(mWebviewPop);
+////            WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+////            transport.setWebView(mWebviewPop);
+//            resultMsg.sendToTarget();
+//
+//            return true;
+//        }
+//
+//    }
 
 }
