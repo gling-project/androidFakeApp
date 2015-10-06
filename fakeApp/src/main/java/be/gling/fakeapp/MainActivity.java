@@ -1,8 +1,12 @@
 package be.gling.fakeapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 import android.webkit.*;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -26,10 +31,10 @@ public class MainActivity extends Activity {
     /* URL saved to be loaded after fb login */
     private static final String target_url        = "https://www.gling.be/";
     private static final String target_url_prefix = "gling.be";
-    private Context     mContext;
-    private ImageView   loadingImage;
-    private WebView     mWebview;
-    private FrameLayout mContainer;
+    private Context      mContext;
+    private LinearLayout loadingImage;
+    private WebView      mWebview;
+    private FrameLayout  mContainer;
     private long mLastBackPressTime = 0;
     private Toast mToast;
     private boolean onLoadingMode = true;
@@ -47,7 +52,7 @@ public class MainActivity extends Activity {
         mWebview = (WebView) findViewById(R.id.webview);
         //mWebviewPop = (WebView) findViewById(R.id.webviewPop);
         mContainer = (FrameLayout) findViewById(R.id.webview_frame);
-        loadingImage = (ImageView) findViewById(R.id.loading_image);
+        loadingImage = (LinearLayout) findViewById(R.id.loading_image);
         WebSettings webSettings = mWebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(false);
@@ -58,11 +63,42 @@ public class MainActivity extends Activity {
         webSettings.setSupportMultipleWindows(false);
 //        mWebview.setWebViewClient(new WebViewClient());
         mWebview.setWebViewClient(new UriWebViewClient());
+        mWebview.setWebChromeClient(new WebChromeClient() {
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, false);
+            }
+        });
 //        mWebview.setWebChromeClient(new UriChromeClient());
-        mWebview.loadUrl(target_url);
 
+        mWebview.loadUrl(target_url);
         mContext = this.getApplicationContext();
 
+    }
+
+    @Override
+    protected void onStart() {
+        start(false);
+    }
+
+    private void start(boolean reload) {
+        if (!isOnline()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.notConnectedDescr);
+            // Add the buttons
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    start(true);
+                    dialog.cancel();
+                }
+            });
+
+            builder.create();
+            builder.show();
+        }
+        else if(reload){
+            mWebview.loadUrl(target_url);
+        }
+        super.onStart();
     }
 
     @Override
@@ -128,6 +164,13 @@ public class MainActivity extends Activity {
 
             super.onPageFinished(view, url);
         }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 //    class UriChromeClient extends WebChromeClient {

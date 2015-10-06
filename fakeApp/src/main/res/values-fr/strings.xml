@@ -4,8 +4,8 @@
     <string name="app_name">Gling</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="notConnectedDescr">Your device is not connected. Please connects it before continue</string>
+    <string name="notConnectedDescr">No Internet connection founded. Connect your device before continuing</string>
     <string name="ok">Ok</string>
-    <string name="loading">Chargement...</string>
+    <string name="loading">Loading...</string>
 
 </resources>

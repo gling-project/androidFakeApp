@@ -20,8 +20,8 @@ android {
         applicationId "be.gling.fakeapp"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 6
-        versionName "1.6"
+        versionCode 9
+        versionName "1.9"
     }
     buildTypes {
         release {

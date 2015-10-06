@@ -4,18 +4,33 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="#0099cc"
+             style="@style/loading_page_style"
              tools:context=".MyActivity">
 
+
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:id="@+id/loading_image"
+            android:orientation="vertical" android:background="#2c265c">
+
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
                android:src="@drawable/icon"
-               android:id="@+id/loading_image"
-               android:background="@color/material_blue_grey_800"/>
+               android:contentDescription="icon" android:layout_margin="20dp"/>
+
+        <TextView
+                style="@style/loading_page_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="@string/loading"
+                android:layout_gravity="center" android:textColor="#ffffff"
+                android:textSize="30sp"/>
+    </LinearLayout>
 
     <WebView
             android:visibility="invisible"
             android:id="@+id/webview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
 </FrameLayout>

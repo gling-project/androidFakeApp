@@ -1,8 +1,19 @@
 <resources>
 
+    <color name="blue_dark">#2c265c</color>
+    <color name="white">#f4f4f4</color>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="loading_page_style">
+        <item name="android:background">@color/blue_dark</item>
+    </style>
+
+    <style name="loading_page_text">
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>
