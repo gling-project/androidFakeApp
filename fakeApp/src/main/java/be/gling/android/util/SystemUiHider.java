@@ -1,4 +1,4 @@
-package be.gling.fakeapp.util;
+package be.gling.android.util;
 
 import android.app.Activity;
 import android.os.Build;
@@ -78,7 +78,7 @@ public abstract class SystemUiHider {
     protected OnVisibilityChangeListener mOnVisibilityChangeListener = sDummyListener;
 
     /**
-     * Creates and returns an instance of {@link be.gling.fakeapp.util.SystemUiHider} that is
+     * Creates and returns an instance of {@link be.gling.android.util.SystemUiHider} that is
      * appropriate for this device. The object will be either a
      * {@link SystemUiHiderBase} or {@link SystemUiHiderHoneycomb} depending on
      * the device.

@@ -1,4 +1,4 @@
-package be.gling.fakeapp;
+package be.gling.android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,15 +44,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_urimalo);
+        setContentView(be.gling.android.R.layout.activity_urimalo);
         // final View controlsView =
         // findViewById(R.id.fullscreen_content_controls);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
-        mWebview = (WebView) findViewById(R.id.webview);
+        mWebview = (WebView) findViewById(be.gling.android.R.id.webview);
         //mWebviewPop = (WebView) findViewById(R.id.webviewPop);
-        mContainer = (FrameLayout) findViewById(R.id.webview_frame);
-        loadingImage = (LinearLayout) findViewById(R.id.loading_image);
+        mContainer = (FrameLayout) findViewById(be.gling.android.R.id.webview_frame);
+        loadingImage = (LinearLayout) findViewById(be.gling.android.R.id.loading_image);
         WebSettings webSettings = mWebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(false);
@@ -83,9 +83,9 @@ public class MainActivity extends Activity {
     private void start(boolean reload) {
         if (!isOnline()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.notConnectedDescr);
+            builder.setTitle(be.gling.android.R.string.notConnectedDescr);
             // Add the buttons
-            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(be.gling.android.R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     start(true);
                     dialog.cancel();

@@ -1,4 +1,4 @@
-package be.gling.fakeapp.util;
+package be.gling.android.util;
 
 import android.app.Activity;
 import android.view.View;
