@@ -12,10 +12,19 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+
+        <!-- meta -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <!-- welcome activity -->
         <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-            android:label="@string/app_name" >
+            android:name=".view.activity.WelcomeActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:label="@string/app_name"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +39,41 @@
                     android:host="welcome" />
             </intent-filter>
         </activity>
+
+
+        <!-- login activity -->
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:label="@string/activity_forgot_password"
+            android:launchMode="singleInstance"></activity>
+
+        <!-- registration activity -->
+        <activity
+            android:name=".view.activity.RegistrationActivity"
+            android:label="@string/activity_registration"
+            android:launchMode="singleInstance"></activity>
+
+        <!-- forgot password activity -->
+        <activity
+            android:name=".view.activity.ForgotPasswordActivity"
+            android:label="@string/activity_forgot_password"
+            android:launchMode="singleInstance"></activity>
+
+        <!-- main activity -->
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"></activity>
+
+        <!-- facebook -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
     </application>
 
 </manifest>

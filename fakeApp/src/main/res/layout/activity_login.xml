@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              style="@style/bg_element"
+        >
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  style="@style/element"
+            >
+
+        <!-- login title -->
+        <TextView
+                style="@style/title_h3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_activity_login"
+                />
+
+        <!-- facebook connection -->
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
+
+        <include layout="@layout/form_basic">
+
+        </include>
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/g_submit"
+                android:id="@+id/b_submit"
+                style="@style/button"/>
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_activity_forgot_password"
+                android:id="@+id/b_forgot_password"
+                style="@style/button"
+                />
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/a_login_registration_button"
+            android:id="@+id/b_registration"
+            style="@style/button"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

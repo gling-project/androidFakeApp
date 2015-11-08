@@ -1,12 +1,9 @@
 <resources>
 
+
+
     <color name="blue_dark">#2c265c</color>
     <color name="white">#f4f4f4</color>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
 
     <style name="loading_page_style">
         <item name="android:background">@color/blue_dark</item>
@@ -15,5 +12,150 @@
     <style name="loading_page_text">
         <item name="android:textColor">@color/white</item>
     </style>
+
+
+
+
+
+    <!-- color -->
+    <color name="t_background">#eeeeee</color>
+    <color name="t_text">#555555</color>
+    <color name="t_element_background">#ffffff</color>
+
+    <!-- main color -->
+
+    <color name="color_green_dark">#00B49B</color>
+    <color name="color_green_light">#1AD2AA</color>
+    <color name="color_blue_dark">#2c265c</color>
+    <color name="color_blue_light">#aad4f2</color>
+    <color name="color_red">#cc0033</color>
+    <color name="color_yellow">#ff9900</color>
+    <color name="color_grey">#cccccc</color>
+    <color name="color_grey_dark">#999</color>
+    <color name="color_white">#f4f4f4</color>
+    <color name="color_black">#555555</color>
+
+
+    <color name="main_color">#02ca52</color>
+    <color name="main_color_2">#4ba252</color>
+    <color name="main_color_disabled">#9602ca52</color>
+    <color name="main_color_2_disabled">#964ba252</color>
+    <color name="main_color_pressed">#ff02af51</color>
+    <color name="main_color_2_pressed">#ff468746</color>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- bg -->
+    <style name="bg_element">
+        <item name="android:background">@color/t_background</item>
+    </style>
+
+
+    <!-- activity -->
+    <style name="activity"></style>
+
+
+    <!-- element -->
+    <style name="element">
+        <item name="android:background">@drawable/element_background</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:textColor">@color/t_text</item>
+    </style>
+
+    <!-- titles -->
+    <style name="title_h3">
+        <item name="android:background">@drawable/title_h3</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginRight">25dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- generic button -->
+    <style name="button">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <!-- error dialog theme -->
+    <style name="dialog_error" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:background">#ffe71527</item>
+        <item name="android:textColor">#fff4f4f4</item>
+    </style>
+
+    <!-- help -->
+    <style name="help">
+        <item name="android:background">#a4c3c300</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <!-- error -->
+    <style name="error_message">
+        <item name="android:background">#FF0000</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="error_field_message">
+        <item name="android:iconPreview">@android:drawable/edit_text</item>
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <!-- input -->
+    <style name="input">
+        <item name="android:textColor">@color/t_text</item>
+        <item name="android:colorBackground">@color/t_background</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <!-- specific style -->
+    <style name="text_blue_title">
+        <item name="android:textColor">@color/color_blue_dark</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_blue">
+        <item name="android:textColor">@color/color_blue_dark</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <!-- custom font -->
+    <declare-styleable name="customTextView">
+        <attr name="customFont" format="string" />
+    </declare-styleable>
+
+    <style name="CustomFontStyle">
+        <item name="customFont">fonts/brandon_re.ttf</item>
+    </style>
+
+
+
+
 
 </resources>

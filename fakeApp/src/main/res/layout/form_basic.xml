@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/activity"
+            android:padding="10dp"
+        >
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
+
+        <!-- form -->
+        <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/insert_point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+        <!-- error message-->
+        <include layout="@layout/error_message"/>
+
+    </LinearLayout>
+</ScrollView>

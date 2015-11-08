@@ -1,4 +1,4 @@
-package be.gling.android;
+package be.gling.android.view.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +21,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import be.gling.android.model.util.Storage;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -29,8 +38,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     /* URL saved to be loaded after fb login */
-    private static final String target_url        = "https://www.gling.be/";
-    private static final String target_url_prefix = "gling.be";
+    private static final String target_url        = "https://lynk-test.herokuapp.com/";
+    private static final String target_url_prefix = "lynk-test.herokuapp.com";
     private Context      mContext;
     private LinearLayout loadingImage;
     private WebView      mWebview;
@@ -70,7 +79,15 @@ public class MainActivity extends Activity {
         });
 //        mWebview.setWebChromeClient(new UriChromeClient());
 
-        mWebview.loadUrl(target_url);
+//        DefaultHttpClient client = new DefaultHttpClient();
+//        HttpGet httpPost = new HttpGet(target_url);
+//        //webSettings.setHeader("authenticationKey", Storage.getAuthenticationKey());
+//        httpPost.setHeader("authenticationKey", Storage.getAuthenticationKey());
+
+        Map<String, String> additionalHttpHeaders = new HashMap<>();
+        additionalHttpHeaders.put("authenticationKey", Storage.getAuthenticationKey());
+
+        mWebview.loadUrl(target_url, additionalHttpHeaders);
         mContext = this.getApplicationContext();
 
     }
