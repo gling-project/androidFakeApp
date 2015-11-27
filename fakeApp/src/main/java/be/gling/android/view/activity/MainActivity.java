@@ -10,25 +10,24 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.*;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import be.gling.android.model.dto.MyselfDTO;
 import be.gling.android.model.util.Storage;
+import be.gling.android.model.util.externalRequest.WebClient;
 
 
 /**
@@ -38,12 +37,14 @@ import be.gling.android.model.util.Storage;
 public class MainActivity extends Activity {
 
     /* URL saved to be loaded after fb login */
-    private static final String target_url        = "https://lynk-test.herokuapp.com/";
-    private static final String target_url_prefix = "lynk-test.herokuapp.com";
-    private Context      mContext;
+    private static final String TARGET_URL = WebClient.TARGET_URL;
+    private static final String LOGOUT_PATH = "rest/logout";
+    private static final String TARGET_URL_PREFIX = WebClient.TARGET_URL_BASE;
+    private static final String URL_PARAM = "url";
+    private Context mContext;
     private LinearLayout loadingImage;
-    private WebView      mWebview;
-    private FrameLayout  mContainer;
+    private WebView mWebview;
+    private FrameLayout mContainer;
     private long mLastBackPressTime = 0;
     private Toast mToast;
     private boolean onLoadingMode = true;
@@ -77,17 +78,13 @@ public class MainActivity extends Activity {
                 callback.invoke(origin, true, false);
             }
         });
-//        mWebview.setWebChromeClient(new UriChromeClient());
 
-//        DefaultHttpClient client = new DefaultHttpClient();
-//        HttpGet httpPost = new HttpGet(target_url);
-//        //webSettings.setHeader("authenticationKey", Storage.getAuthenticationKey());
-//        httpPost.setHeader("authenticationKey", Storage.getAuthenticationKey());
+        String authenticationKey = Storage.getAuthenticationKey();
 
         Map<String, String> additionalHttpHeaders = new HashMap<>();
-        additionalHttpHeaders.put("authenticationKey", Storage.getAuthenticationKey());
+        additionalHttpHeaders.put("authenticationKey", authenticationKey);
 
-        mWebview.loadUrl(target_url, additionalHttpHeaders);
+        mWebview.loadUrl(TARGET_URL, additionalHttpHeaders);
         mContext = this.getApplicationContext();
 
     }
@@ -97,12 +94,28 @@ public class MainActivity extends Activity {
         start(false);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putString(URL_PARAM, mWebview.getUrl());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        mWebview.loadUrl(savedInstanceState.getString(URL_PARAM));
+    }
+
     private void start(boolean reload) {
         if (!isOnline()) {
+            mWebview.setVisibility(View.GONE);
+            loadingImage.setVisibility(View.VISIBLE);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(be.gling.android.R.string.notConnectedDescr);
             // Add the buttons
-            builder.setPositiveButton(be.gling.android.R.string.ok, new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(be.gling.android.R.string.g_ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     start(true);
                     dialog.cancel();
@@ -112,9 +125,12 @@ public class MainActivity extends Activity {
             builder.create();
             builder.show();
         }
-        else if(reload){
-            mWebview.loadUrl(target_url);
+        else if(mWebview.getVisibility() == View.GONE){
+            mWebview.loadUrl(TARGET_URL);
         }
+//        else if (reload) {
+//            mWebview.loadUrl(TARGET_URL);
+//        }
         super.onStart();
     }
 
@@ -138,6 +154,28 @@ public class MainActivity extends Activity {
     private class UriWebViewClient extends WebViewClient {
 
         @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest webResourceRequest)
+        {
+
+            String s = webResourceRequest.getUrl().toString();
+
+            if (s.contains(TARGET_URL + LOGOUT_PATH)) {
+                //logout facebook
+                if(AccessToken.getCurrentAccessToken()!=null) {
+                    LoginManager.getInstance().logOut();
+                }
+                //go to login activity
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                Storage.clean(MainActivity.this);
+                finish();
+            }
+
+            return null;
+        }
+
+        @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
             if (url.startsWith("mailto:")) {
@@ -151,12 +189,12 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(Intent.CATEGORY_APP_MAPS,
                         Uri.parse(url));
                 startActivity(intent);
-            } else if (url.contains(target_url_prefix)
+            } else if (url.contains(TARGET_URL_PREFIX)
                     || url.contains("/dialog/oauth")
                     || url.contains("m.facebook.com/login")) {
                 view.loadUrl(url);
                 return false;
-            } else {
+            }  else {
                 view.getContext().startActivity(
                         new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             }
@@ -189,59 +227,5 @@ public class MainActivity extends Activity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-
-//    class UriChromeClient extends WebChromeClient {
-//
-//        @Override
-//        public boolean onCreateWindow(WebView view, boolean isDialog,
-//                                      boolean isUserGesture, Message resultMsg) {
-////            mWebviewPop = new WebView(mContext);
-////            mWebviewPop.setVerticalScrollBarEnabled(false);
-////            mWebviewPop.setHorizontalScrollBarEnabled(false);
-////            mWebviewPop.setWebViewClient(new UriWebViewClient());
-////            mWebviewPop.getSettings().setJavaScriptEnabled(true);
-////            mWebviewPop.getSettings().setSavePassword(false);
-//
-////            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-////                    ViewGroup.LayoutParams.MATCH_PARENT);
-////            layoutParams.setMargins(20, 100, 20, 100);
-//
-////            mWebviewPop.setLayoutParams(layoutParams);
-////            mContainer.addView(mWebviewPop);
-////            WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-////            transport.setWebView(mWebviewPop);
-//            resultMsg.sendToTarget();
-//
-//            return true;
-//        }
-//
-//    }
-
-//    class UriChromeClient extends WebChromeClient {
-//
-//        @Override
-//        public boolean onCreateWindow(WebView view, boolean isDialog,
-//                                      boolean isUserGesture, Message resultMsg) {
-////            mWebviewPop = new WebView(mContext);
-////            mWebviewPop.setVerticalScrollBarEnabled(false);
-////            mWebviewPop.setHorizontalScrollBarEnabled(false);
-////            mWebviewPop.setWebViewClient(new UriWebViewClient());
-////            mWebviewPop.getSettings().setJavaScriptEnabled(true);
-////            mWebviewPop.getSettings().setSavePassword(false);
-//
-////            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-////                    ViewGroup.LayoutParams.MATCH_PARENT);
-////            layoutParams.setMargins(20, 100, 20, 100);
-//
-////            mWebviewPop.setLayoutParams(layoutParams);
-////            mContainer.addView(mWebviewPop);
-////            WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-////            transport.setWebView(mWebviewPop);
-//            resultMsg.sendToTarget();
-//
-//            return true;
-//        }
-//
-//    }
 
 }

@@ -2,6 +2,9 @@ package be.gling.android.model.util;
 
 import android.content.Context;
 
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
+
 import java.util.Date;
 
 import be.gling.android.model.dto.AccountDTO;
@@ -16,6 +19,7 @@ public class Storage {
 
     private final static long MAX_DELAY = 30 * 60 * 1000;
 
+    private static Long userId;
     private static Date lastLoading;
     private static AccountDTO account;
     private static String authenticationKey;
@@ -28,7 +32,25 @@ public class Storage {
         authenticationKey = connection.getAuthenticationKey();
 
         AccountService.storeService(context, connection);
+        userId = account.getId();
         lastLoading = new Date();
+
+
+        //add userId to parse
+        ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
+        ParsePush.subscribeInBackground("user"+account.getId());
+//        currentInstallation.add("channels", account.getId());
+//        currentInstallation.saveInBackground();
+//
+//        String installationId = currentInstallation.getInstallationId();
+//
+//        Object userId2 = ParseInstallation.getCurrentInstallation().get("channels");
+//        Number channels = ParseInstallation.getCurrentInstallation().getNumber("channels");
+//
+//
+//
+//        int i = 0;
+
     }
 
     public static boolean isConnected() {
@@ -66,5 +88,8 @@ public class Storage {
         return account;
     }
 
+    public static Long getUserId() {
+        return userId;
+    }
 }
 

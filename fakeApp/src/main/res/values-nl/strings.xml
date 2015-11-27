@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Gling</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="notConnectedDescr">Geen internet verbinding gevonden . Sluit uw apparaat voordat u verder</string>
-    <string name="ok">Ok</string>
-    <string name="loading">Laden...</string>
+    <!-- GENERIC -->
+    <string name="g_lastName">Naam</string>
+    <string name="g_firstName">Voornaam</string>
+    <string name="g_password">Wachtwoord</string>
+    <string name="g_reapeat_password">Herhaal uw wachtwoor</string>
+    <string name="g_back">Terug</string>
+    <string name="g_email">E-mail</string>
+    <string name="g_loading">Een beetje geduld alstublieft</string>
+    <string name="g_close">Sluiten</string>
+    <string name="g_warning">Opgepast</string>
+    <string name="g_error">Fout</string>
+    <string name="g_gender">Geslacht</string>
+    <string name="g_submit">Voorleggen aan</string>
+    <string name="notConnectedDescr">Uw apparaat is momenteel off-line. Maak verbinding met het netwerk voordat u verder gaat.</string>
+    <string name="g_ok">Ok</string>
+
+    <!-- login activity -->
+    <string name="login_activity_forgot_password">Wachtwoord vergeten ?</string>
+    <string name="login_activity_not_registered_yet">Nog niet geregistreerd?</string>
+    <string name="login_activity_button_login">Schrijf u in</string>
+    <string name="a_login_registration_button">Registreer U!</string>
+    <string name="login_activity_or">Of</string>
+
+
+    <!-- forgot password activity -->
+    <string name="activity_forgot_password">Wachtwoord vergeten ?</string>
+
+    <!-- registration activity -->
+    <string name="activity_registration">Inschrijving</string>
+    <!--gendre list-->
+    <string-array name="gender_array">
+        <item>Man</item>
+        <item>Vrouw</item>
+    </string-array>
+
+    <!--error -->
+    <string name="verification_email">Geldig e-mail adres</string>
+    <string name="verification_password">Tussen 6 en 18 letters, cijfers of -%</string>
+    <string name="forgot_password_success">Een e-mail met een nieuw wachtwoord werd naar u verzonden.</string>
+    <string name="help_forgot_password">Vul uw e-mailadres in en ontvang een email met een nieuw wachtwoord.</string>
+
+    <string name="account_form_error_name">Tussen 2 en 50 letters</string>
+    <string name="g_error_not_null_default">Vul dit gebied</string>
+    <string name="g_error_passwords_not_equals">De twee wachtwoorden moeten hetzelfde zijn.</string>
 
 </resources>

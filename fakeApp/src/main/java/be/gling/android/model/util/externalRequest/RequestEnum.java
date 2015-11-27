@@ -2,9 +2,7 @@ package be.gling.android.model.util.externalRequest;
 
 import be.gling.android.model.dto.MyselfDTO;
 import be.gling.android.model.dto.ResultDTO;
-import be.gling.android.model.dto.TestFacebookDTO;
-import be.gling.android.model.dto.post.CustomerRegistrationDTO;
-import be.gling.android.model.dto.post.FacebookAuthenticationDTO;
+import be.gling.android.model.dto.post.AccountRegistrationDTO;
 import be.gling.android.model.dto.post.ForgotPasswordDTO;
 import be.gling.android.model.dto.post.LoginDTO;
 import be.gling.android.model.dto.technical.DTO;
@@ -19,13 +17,11 @@ public enum RequestEnum {
     LOGIN(
             RequestType.POST, false, "rest/login", LoginDTO.class, MyselfDTO.class),
     LOGIN_FACEBOOK(
-            RequestType.GET, false, "rest/login/facebook/:token", null, MyselfDTO.class),
+            RequestType.GET, false, "rest/login/facebook/:access_token/:user_id", null, MyselfDTO.class),
     FORGOT_PASSWORD(
             RequestType.PUT, false, "rest/forgot/password", ForgotPasswordDTO.class, ResultDTO.class),
     REGISTRATION(
-            RequestType.POST, false, "rest/registration/customer", CustomerRegistrationDTO.class, MyselfDTO.class),
-    FACEBOOK_TEST(
-            RequestType.POST, false, "rest/facebook/test", FacebookAuthenticationDTO.class, TestFacebookDTO.class),
+            RequestType.POST, false, "rest/registration/customer", AccountRegistrationDTO.class, MyselfDTO.class),
     GET_MYSELF(
             RequestType.GET, true, "rest/myself", null, MyselfDTO.class);
 

@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Gling</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="notConnectedDescr">No Internet connection founded. Connect your device before continuing</string>
-    <string name="ok">Ok</string>
-    <string name="loading">Loading...</string>
+    <!-- GENERIC -->
+    <string name="g_lastName">Nom</string>
+    <string name="g_firstName">Prénom</string>
+    <string name="g_password">Mot de passe</string>
+    <string name="g_reapeat_password">Répéter le mot de passe</string>
+    <string name="g_login">Login</string>
+    <string name="g_back">Retour</string>
+    <string name="g_email">Email</string>
+    <string name="g_loading">Chargement ...</string>
+    <string name="g_close">Fermer</string>
+    <string name="g_warning">Attention</string>
+    <string name="g_error">Erreur</string>
+    <string name="g_gender">Sexe</string>
+    <string name="g_submit">Envoyer</string>
+    <string name="notConnectedDescr">Votre appareil est actuellement hors line. Veuillez vous connecter au réseau pour poursuivre</string>
+    <string name="g_ok">Ok</string>
+
+    <!-- login activity -->
+    <string name="login_activity_forgot_password">Mot de passe oublié ?</string>
+    <string name="login_activity_not_registered_yet">Vous n\'avez pas encore de compte ?</string>
+    <string name="login_activity_button_login">Connexion</string>
+    <string name="a_login_registration_button">Inscrivez-vous!</string>
+    <string name="login_activity_or">Ou</string>
+
+
+    <!-- forgot password activity -->
+    <string name="activity_forgot_password">Mot de passe oublié ?</string>
+
+    <!-- registration activity -->
+    <string name="activity_registration">Enregistrement</string>
+    <!--gendre list-->
+    <string-array name="gender_array">
+        <item>Homme</item>
+        <item>Femme</item>
+    </string-array>
+
+    <!--error -->
+    <string name="verification_email">Adresse email attendue</string>
+    <string name="verification_password">Entre 6 et 18 letters, nombre ou _-</string>
+    <string name="forgot_password_success">Un nouveau mot de passe vous a été envoyé par email.</string>
+    <string name="help_forgot_password">indiquez votre adresse email et un nouveau mot de passe vous sera envoyé par email</string>
+
+    <string name="account_form_error_name">Entre 2 et 50 caractères</string>
+    <string name="g_error_not_null_default">Veuillez compléter ce champs</string>
+    <string name="g_error_passwords_not_equals">Les deux mots de passe ne sont pas équivalent</string>
 
 </resources>

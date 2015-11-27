@@ -2,6 +2,7 @@ package be.gling.android.view.widget.technical;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,5 +170,18 @@ public class Form extends LinearLayout implements AdapterView.OnItemSelectedList
             }
         }
         return null;
+    }
+
+    public void saveToInstanceState(Bundle savedInstanceState) {
+        for (Field  field: fields) {
+            field.saveToInstanceState(savedInstanceState);
+        }
+
+    }
+
+    public void restoreFromInstanceState(Bundle savedInstanceState) {
+        for (Field  field: fields) {
+            field.restoreFromInstanceState(savedInstanceState);
+        }
     }
 }

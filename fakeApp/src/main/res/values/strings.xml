@@ -5,56 +5,31 @@
     <!--<string name="facebook_app_id">1042793935750669</string>-->
     <string name="facebook_app_id">160818220927220</string>
 
-    <!-- TODO REMOVE -->
     <string name="app_name">Gling</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
-    <string name="action_settings">Settings</string>
 
     <!-- GENERIC -->
-    <string name="g_registration">Registration</string>
-    <string name="g_welcome">Welcome</string>
     <string name="g_lastName">Last Name</string>
-    <string name="g_name">name</string>
     <string name="g_firstName">First Name</string>
-    <string name="g_continue">Continue</string>
     <string name="g_password">Password</string>
     <string name="g_reapeat_password">Repeat password</string>
     <string name="g_login">Login</string>
     <string name="g_back">Back</string>
-    <string name="g_value">Value</string>
-    <string name="g_date">Date</string>
-    <string name="g_desc">Description</string>
-    <string name="g_edit">Edit</string>
     <string name="g_email">Email</string>
-    <string name="g_submit">Submit</string>
     <string name="g_loading">Loading ...</string>
-    <string name="g_price">Price</string>
     <string name="g_close">Close</string>
-    <string name="g_none">None</string>
-    <string name="g_valid">Valid</string>
-    <string name="g_refresh">Refresh</string>g_loading
-    <string name="g_add">Add</string>
-    <string name="g_remove">Remove</string>
-    <string name="g_save">Save</string>
-    <string name="g_roommate">Roommate</string>
-    <string name="g_name_abrv">Acronym</string>
-    <string name="g_total">Total</string>
     <string name="g_warning">Warning</string>
-    <string name="g_category">Category</string>
-    <string name="g_logout">Logout</string>
-    <string name="g_cancel">Cancel</string>
     <string name="g_error">Error</string>
     <string name="g_gender">Gender</string>
+    <string name="g_submit">Submit</string>
+    <string name="notConnectedDescr">Your device is currently off line. Please login it to the Network before continue</string>
+    <string name="g_ok">Ok</string>
 
     <!-- login activity -->
-    <string name="login_activity_login">Login you</string>
     <string name="login_activity_forgot_password">Forgot password ?</string>
-    <string name="a_login_registration_button">Not registered yet ?</string>
+    <string name="login_activity_not_registered_yet">You doen\'t have an account yet ?</string>
+    <string name="login_activity_button_login">Login</string>
+    <string name="a_login_registration_button">Sign up!</string>
+    <string name="login_activity_or">Or</string>
 
 
     <!-- forgot password activity -->
@@ -62,27 +37,11 @@
 
     <!-- registration activity -->
     <string name="activity_registration">Registration</string>
-    <string name="a_registration_error_sla_not_accepted">Vous devez accepter les termes et conditions avant de continuer</string>
-    <string name="a_registration_accept_sla">J\'accepte les termes et conditions</string>
-    <string name="a_registration_facebook_success_missing_data">Veuillez compléter les informations manquantes</string>
-    <string name="a_registration_facebook_success">Veuillez accepter les termes et conditions</string>
     <!--gendre list-->
     <string-array name="gender_array">
-        <item>Homme</item>
-        <item>Femme</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
-
-
-
-    <!-- publication form -->
-    <string name="form_promotion_activity_title">Créer une promotion</string>
-    <string name="form_business_notification_activity_title">Créer une actualité</string>
-    <string name="form_publication_title">Titre</string>
-    <string name="form_publication_description">Description</string>
-    <string name="form_publication_startdate">Date de début</string>
-    <string name="form_publication_enddate">Date de fin</string>
-    <string name="form_publication_originalprice">Prix de base</string>
-    <string name="form_publication_percent">Pourcentage de réduction</string>
 
     <!--error -->
     <string name="verification_email">Email expected</string>
@@ -90,12 +49,8 @@
     <string name="forgot_password_success">A new password was send to your email address.</string>
     <string name="help_forgot_password">Get your email address and we\'ll send you a new password by e-mail</string>
 
-    <string name="form_publication_error_title">Le titre doit faire entre 2 et 100 caractères</string>
-    <string name="form_publication_error_description">La description ne peut excéder 1000 caractères</string>
-    <string name="account_form_error_name">Entre 2 et 50 caractères</string>
-    <string name="g_error_not_null_default">merci de remplir ce champs</string>
-    <string name="promotion_form_error_percent_limit">Le pourcentage doit être compris entre 0 et 100</string>
-    <string name="g_error_passwords_not_equals">Les deux mots de passe ne sont pas équivalent</string>
-    <string name="error_select_something">Veuillez sélectionner un choix</string>
+    <string name="account_form_error_name">Between 3 and 50 letters</string>
+    <string name="g_error_not_null_default">Please complete this field</string>
+    <string name="g_error_passwords_not_equals">Both passwords are not the same</string>
 
 </resources>

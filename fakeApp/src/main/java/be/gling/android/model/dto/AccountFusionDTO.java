@@ -14,6 +14,7 @@ public class AccountFusionDTO extends DTO {
     private String facebookToken;
 
     private String password;
+
     private String facebookUserId;
 
     public String getEmail() {

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Window;
 
 import com.facebook.FacebookSdk;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 import be.gling.android.R;
 import be.gling.android.model.dto.MyselfDTO;
@@ -32,6 +34,7 @@ public class WelcomeActivity extends AbstractActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         FacebookSdk.sdkInitialize(this);
 
@@ -65,7 +68,7 @@ public class WelcomeActivity extends AbstractActivity {
     private class LoadDataRequest extends AsyncTask<String, Void, Void> {
 
         private MyselfDTO loginSuccessDTO;
-        private String          errorMessage;
+        private String errorMessage;
 
         private LoadDataRequest() {
         }

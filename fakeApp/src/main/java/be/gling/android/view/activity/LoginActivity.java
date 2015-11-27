@@ -45,8 +45,6 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
     public void onCreate(Bundle savedInstanceState) {
 
 
-
-
         super.onCreate(savedInstanceState);
 
         loadingDialog = DialogConstructor.dialogLoading(this);
@@ -69,7 +67,8 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
                 WebClient<MyselfDTO> webClient = new WebClient<MyselfDTO>(RequestEnum.LOGIN_FACEBOOK,
                         MyselfDTO.class);
 
-                webClient.setParams("token", loginResult.getAccessToken().getToken());
+                webClient.setParams("access_token", loginResult.getAccessToken().getToken());
+                webClient.setParams("user_id", loginResult.getAccessToken().getUserId());
 
                 Request request = new Request(LoginActivity.this, webClient);
 
@@ -95,7 +94,7 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-                finish();
+
             }
         });
 
@@ -104,7 +103,6 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
-                finish();
             }
         });
 
@@ -163,6 +161,20 @@ public class LoginActivity extends AbstractActivity implements RequestActionInte
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        form.saveToInstanceState(savedInstanceState);
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        form.restoreFromInstanceState(savedInstanceState);
     }
 
     @Override

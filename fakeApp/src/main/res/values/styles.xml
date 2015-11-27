@@ -28,20 +28,13 @@
     <color name="color_green_light">#1AD2AA</color>
     <color name="color_blue_dark">#2c265c</color>
     <color name="color_blue_light">#aad4f2</color>
+    <color name="color_blue_middle">#413c9a</color>
     <color name="color_red">#cc0033</color>
     <color name="color_yellow">#ff9900</color>
     <color name="color_grey">#cccccc</color>
     <color name="color_grey_dark">#999</color>
     <color name="color_white">#f4f4f4</color>
     <color name="color_black">#555555</color>
-
-
-    <color name="main_color">#02ca52</color>
-    <color name="main_color_2">#4ba252</color>
-    <color name="main_color_disabled">#9602ca52</color>
-    <color name="main_color_2_disabled">#964ba252</color>
-    <color name="main_color_pressed">#ff02af51</color>
-    <color name="main_color_2_pressed">#ff468746</color>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -71,13 +64,13 @@
 
     <!-- titles -->
     <style name="title_h3">
-        <item name="android:background">@drawable/title_h3</item>
+        <item name="android:textColor">@color/color_green_light</item>
         <item name="android:layout_marginLeft">25dp</item>
         <item name="android:layout_marginRight">25dp</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <!-- generic button -->
@@ -95,6 +88,13 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+
+    <!-- link style -->
+    <style name="link">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <!-- error dialog theme -->
     <style name="dialog_error" parent="@android:style/Theme.Holo.Dialog">

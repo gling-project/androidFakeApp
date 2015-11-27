@@ -41,9 +41,8 @@ public class WebClient<U extends DTO> {
     //main url of the service - office
     //public final static String TARGET_URL = "http://192.168.18.190:9000/";
     //  test
-    //public final static String TARGET_URL = "http://roommate-service.herokuapp.com/";
-    //  official
-    public final static String TARGET_URL = "https://lynk-test.herokuapp.com/";
+    public final static String TARGET_URL_BASE = "www.gling.be";
+    public final static String TARGET_URL = "https://www.gling.be/";
 
     //error message service
     private ErrorMessageService errorMessageService = new ErrorMessageService();

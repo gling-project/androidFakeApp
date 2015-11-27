@@ -23,11 +23,16 @@ import be.gling.android.model.util.exception.MyException;
 public class FieldEditText extends EditText implements InputField {
 
     public FieldEditText(Context context) {
-        this(context, null);
+        this(context, (AttributeSet)null);
     }
 
     public FieldEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public FieldEditText(Context context, Integer inputType) {
+        super(context, null);
+        setInputType(inputType);
     }
 
     @Override

@@ -87,9 +87,6 @@ public class ForgotPasswordActivity extends AbstractActivity implements RequestA
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        //help
-        ((TextView)findViewById(R.id.help)).setText(Tools.getHelp(this, R.string.help_forgot_password));
     }
 
 
